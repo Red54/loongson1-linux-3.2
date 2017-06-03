@@ -13,6 +13,12 @@
 #ifndef	__STLS2F_GPIO_H
 #define	__STLS2F_GPIO_H
 
+#if defined(CONFIG_CPU_LOONGSON1A) || defined(CONFIG_CPU_LOONGSON1B) || defined(CONFIG_CPU_LOONGSON1C)
+
+#include <asm/mach-loongson/ls1x/ls1x_gpio.h>
+
+#else
+
 #include <asm-generic/gpio.h>
 
 extern void gpio_set_value(unsigned gpio, int value);
@@ -32,4 +38,5 @@ static inline int irq_to_gpio(int gpio)
 	return -EINVAL;
 }
 
+#endif
 #endif				/* __STLS2F_GPIO_H */

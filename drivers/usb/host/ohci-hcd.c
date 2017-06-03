@@ -990,6 +990,11 @@ MODULE_AUTHOR (DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE ("GPL");
 
+#ifdef CONFIG_USB_OHCI_HCD_LS1X
+#include "ohci-ls1x.c"
+#define	PLATFORM_DRIVER		ohci_hcd_ls1x_driver
+#endif
+
 #ifdef CONFIG_PCI
 #include "ohci-pci.c"
 #define PCI_DRIVER		ohci_pci_driver
@@ -1114,6 +1119,11 @@ MODULE_LICENSE ("GPL");
 #ifdef CONFIG_NLM_XLR
 #include "ohci-xls.c"
 #define PLATFORM_DRIVER		ohci_xls_driver
+#endif
+
+#ifdef CONFIG_USB_OHCI_HCD_PLATFORM
+#include "ohci-platform.c"
+#define PLATFORM_DRIVER		ohci_platform_driver
 #endif
 
 #if	!defined(PCI_DRIVER) &&		\
